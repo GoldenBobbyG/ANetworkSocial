@@ -51,7 +51,7 @@ export const createThought = async (req: Request, res: Response) => {
 export const updateThought = async (req: Request, res: Response) => {
     try {
         const thought = await Thought.findOneAndUpdate(
-            req.params.thoughtId,
+            { _id: req.params.thoughtId },
             req.body,
             { new: true, runValidators: true }
         );
@@ -67,7 +67,7 @@ export const updateThought = async (req: Request, res: Response) => {
 // This controller deletes a thought from the database and removes it from the associated user's thoughts.
 export const deleteThought = async (req: Request, res: Response) => {
     try {
-        const thought = await Thought.findOneAndDelete(req.params.thoughtId);
+        const thought = await Thought.findOneAndDelete({ _id: req.params.thoughtId });
 
         if (!thought) {
             return res.status(404).json({ message: 'No thought with that ID' });
@@ -89,7 +89,7 @@ export const deleteThought = async (req: Request, res: Response) => {
 export const addReaction = async (req: Request, res: Response) => { 
     try {
         const thought = await Thought.findOneAndUpdate(
-            req.params.thoughtId,
+            { _id: req.params.thoughtId },
             { $push: { reactions: req.body } },
             { new: true, runValidators: true }
         );
@@ -107,7 +107,7 @@ export const addReaction = async (req: Request, res: Response) => {
 export const removeReaction = async (req: Request, res: Response) => {
     try {
         const thought = await Thought.findOneAndUpdate(
-            req.params.thoughtId,
+            {_id: req.params.thoughtId},
             { $pull: { reactions: { reactionId: req.params.reactionId } } },
             { new: true }
         );

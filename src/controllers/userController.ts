@@ -45,7 +45,7 @@ export const userControllerById = async (req: Request, res: Response) => {
     export const updateUser = async (req: Request, res: Response) => {
         try {
             const user = await User.findOneAndUpdate(
-                req.params.userId,
+                { _id: req.params.userId },
                 req.body,
                 { new: true, runValidators: true }
             );
@@ -67,7 +67,7 @@ export const userControllerById = async (req: Request, res: Response) => {
                 return res.status(404).json({ message: 'No user with that ID' });
             }
             // Delete the user's thoughts
-        await Thought.deleteMany({ username: user.username });
+        await Thought.deleteMany({ username: User });
         res.json({ message: 'User and thoughts deleted!' });
         } catch (error) {
             res.status(500).json(error);
@@ -78,7 +78,7 @@ export const userControllerById = async (req: Request, res: Response) => {
     export const addFriend = async (req: Request, res: Response) => {
         try {
             const user = await User.findOneAndUpdate(
-                req.params.userId,
+                { _id: req.params.userId },
                 { $addToSet: { friends: req.params.friendId } },
                 { new: true }
             );
@@ -95,7 +95,7 @@ export const userControllerById = async (req: Request, res: Response) => {
     export const removeFriend = async (req: Request, res: Response) => {
         try {
             const user = await User.findOneAndUpdate(
-                req.params.userId,
+                { _id: req.params.userId },
                 { $pull: { friends: req.params.friendId } },
                 { new: true }
             );
