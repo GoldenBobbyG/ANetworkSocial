@@ -44,6 +44,8 @@ export const userControllerById = async (req: Request, res: Response) => {
     // Update a user
     export const updateUser = async (req: Request, res: Response) => {
         try {
+            console.log('Request body:', req.body);
+            
             const user = await User.findOneAndUpdate(
                 { _id: req.params.userId },
                 req.body,
