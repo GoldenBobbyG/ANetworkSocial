@@ -15,7 +15,7 @@ Usage is for a social network that can test the backend to ensure users, thought
 none
 
 ## Tests
-Test GET, POST, DELETE in POSTMAN typepe    of    application
+Test GET, POST, DELETE in POSTMAN. 
 
 
 ## License
