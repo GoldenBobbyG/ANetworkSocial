@@ -17,6 +17,14 @@ none
 ## Tests
 Test GET, POST, DELETE in POSTMAN. 
 
+## Notes 
+
+Used Copilot for edits. 
+
+## Video
+
+https://app.screencastify.com/v3/watch/wzO0xARfz0qFteTw1jww
+
 
 ## License
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
